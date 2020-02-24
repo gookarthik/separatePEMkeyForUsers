@@ -1,0 +1,23 @@
+- Create a new key pair calle "user1", "user2". You must provide the .pem file to the user
+ssh-keygen -y -f /home/ubuntu/user1.pem
+sudo adduser user1 --disabled-password
+sudo su - user1
+mkdir .ssh
+chmod 700 .ssh
+touch .ssh/authorized_keys
+chmod 600 .ssh/authorized_keys
+nano .ssh/authorized_keys
+-------Paste the public key that you retrieved--------
+---------The user should now be able to log into the user1-----------
+
+ssh-keygen -y -f /home/ubuntu/user2.pem
+sudo adduser user2 --disabled-password
+sudo su - user2
+mkdir .ssh
+chmod 700 .ssh
+touch .ssh/authorized_keys
+chmod 600 .ssh/authorized_keys
+nano .ssh/authorized_keys
+-------Paste the public key that you retrieved--------
+---------The user should now be able to log into the user2-----------
+sudo echo "user2 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
