@@ -1,34 +1,36 @@
-- Create a new key pair calle "user1", "user2". You must provide the .pem file to the user
-User1 = With Sudo permission
-User2 = Without Sudo permission
+- Create a new key pair calle "dev1", "test1". You must provide the .pem file to the user
+dev1 = With Sudo permission
+test1 = Without Sudo permission
 
 
-ssh-keygen -y -f /home/ubuntu/user1.pem
-sudo adduser user1 --disabled-password
-sudo echo "user2 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-sudo su - user1
+ssh-keygen -y -f /home/ubuntu/dev1.pem
+sudo adduser dev1 --disabled-password
+sudo echo "dev1 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+sudo su - dev1
 mkdir .ssh
 chmod 700 .ssh
 touch .ssh/authorized_keys
 chmod 600 .ssh/authorized_keys
 nano .ssh/authorized_keys
 -------Paste the public key that you retrieved--------
----------The user should now be able to log into the user1-----------
+---------The user should now be able to log into the dev1-----------
+exit
 
-ssh-keygen -y -f /home/ubuntu/user2.pem
-sudo adduser user2 --disabled-password
-sudo su - user2
+ssh-keygen -y -f /home/ubuntu/test1.pem
+sudo adduser test1 --disabled-password
+sudo su - test1
 mkdir .ssh
 chmod 700 .ssh
 touch .ssh/authorized_keys
 chmod 600 .ssh/authorized_keys
 nano .ssh/authorized_keys
 -------Paste the public key that you retrieved--------
----------The user should now be able to log into the user2-----------
-
-addgroup group1
-addgroup group2
-usermod -a -G group1 user1
-usermod -a -G group2 user2
-groups user1
-groups user2
+---------The user should now be able to log into the test1-----------
+exit
+sudos su
+addgroup developer
+addgroup tester
+usermod -a -G developer dev1
+usermod -a -G tester test1
+groups dev1
+groups test1
