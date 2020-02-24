@@ -2,6 +2,7 @@
 User1 = With Sudo permission
 User2 = Without Sudo permission
 
+
 ssh-keygen -y -f /home/ubuntu/user1.pem
 sudo adduser user1 --disabled-password
 sudo echo "user2 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
@@ -24,3 +25,10 @@ chmod 600 .ssh/authorized_keys
 nano .ssh/authorized_keys
 -------Paste the public key that you retrieved--------
 ---------The user should now be able to log into the user2-----------
+
+addgroup group1
+addgroup group2
+usermod -a -G group1 user1
+usermod -a -G group2 user2
+groups user1
+groups user2
