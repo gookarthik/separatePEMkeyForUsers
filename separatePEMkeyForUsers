@@ -3,6 +3,8 @@ dev1 = With Sudo permission
 test1 = Without Sudo permission
 
 sudo su
+vi dev1.pem
+    // Copy and paste the received pem key
 ssh-keygen -y -f /home/ubuntu/dev1.pem
 sudo adduser dev1 --disabled-password
 sudo echo "dev1 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
